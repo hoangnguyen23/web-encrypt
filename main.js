@@ -221,7 +221,7 @@ function handleCrypto(action) { // action = "encrypt" hoặc "decrypt"
 
     // Nếu là mã hoá thì gửi lên server
     if (action === "encrypt" || action === "decrypt") {
-        fetch("http://localhost:3000/save-message", {
+        fetch("https://web-encrypt-backend.onrender.com", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
