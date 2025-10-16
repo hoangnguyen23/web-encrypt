@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="reponsive.css">
+    <title>Encryption tool</title>
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-logo">
+                <img src="./imgs/CipherHub.png" alt="" class="logo-img">
+            </div>
+            <nav class="side-bar">
+                <ul class="menu-list">
+                    <li class="menu-item active-menu">
+                        <i class="fa-solid fa-arrow-right"></i>
+                        <p>Caesar</p>
+                    </li>
+                    <li class="menu-item">
+                        <i class="fa-solid fa-arrow-right"></i>
+                        <p>Vigenere</p>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <div class="overlay"></div>
+        <div class="content">
+            <div class="heading">
+                <h1>Công cụ mã hoá/giải mã</h1>
+                <i class="fa-solid fa-bars bars-icon"></i>
+            </div>
+            <section id="caesar" class="section active">
+                <div class="sec-con">
+                    <h1 class="sub-title">Caesar</h1>
+                    <form action="" class="form">
+                        <div class="form-group">
+                            <label for="" class="form-label">Nhập văn bản cần mã hoá / giải mã</label>
+                            <textarea name="" class="form-input-plaintext caesar-plaintext"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="form-label">Nhập khoá</label>
+                            <textarea name="" class="form-input-key caesar-key"></textarea>
+                        </div>
+                        <div class="form-submit">
+                            <button class="btn submit-btn encrypt-btn" type="button">Mã hoá</button>
+                            <button class="btn submit-btn decrypt-btn" type="button">Giải mã</button>
+                        </div>
+                        <div class="form-result">
+                            <div class="textarea-wrapper">
+                                <label for="" class="form-label">Kết quả</label>
+                                <button class="copy-btn" type="button">
+                                    <i class="fa-solid fa-copy"></i>
+                                    Sao chép
+                                </button>
+                            </div>
+                            <textarea class="form-output-ciphertext caesar-output" readonly></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="sec-desc">
+                    <h2>Mô tả</h2>
+                    <p>
+                        Mật mã Caesar, còn được gọi là mã hoá dịch chuyển, là một phương pháp đơn giản
+                        để mã hoá thông điệp bằng cách dịch chuyển các ký tự trong bản rõ (plaintext) sang
+                        các ký tự khác trong bản mã (ciphertext). Phương pháp này được đặt tên theo Julius
+                        Caesar, nhà lãnh đạo quân đội La Mã cổ đại, người được cho là đã sử dụng nó để giao
+                        tiếp bí mật.
+                        <br> <br>
+                        Cách thức hoạt động của mật mã Caesar rất đơn giản. Mỗi ký tự trong bản rõ được
+                        dịch chuyển một số lượng cố định các vị trí theo bảng chữ cái. Ví dụ, nếu chúng ta sử
+                        dụng một dịch chuyển (shift) của 3, "A" sẽ được mã hoá thành "D", "B" thành "E", và
+                        tiếp tục như vậy. Quá trình giải mã được thực hiện bằng cách dịch ngược lại.
+                        <br> <br>
+                        - Ví dụ minh họa với một thông điệp và một dịch chuyển là 3:
+                        <br>
+                        + Bản rõ (Plaintext): HELLO
+                        <br>
+                        + Bản mã (Ciphertext): KHOOR
+                        <br>
+                        Để giải mã, chúng ta sẽ dịch ngược lại các ký tự:
+                        <br>
+                        + Bản mã (Ciphertext): KHOOR
+                        <br>
+                        + Bản rõ (Plaintext): HELLO
+                        <br> <br>
+                        Mã hóa cũng có thể được biểu diễn thông qua số học mô-đun, bằng cách gán các ký
+                        tự bằng các con số, theo tuần tự, A → 0, B → 1,..., Z → 25. Mã hóa một chữ cái x bằng
+                        phép dịch chuyển n vị trí có thể mô tả bằng biểu thức toán học sau: E<sub>n</sub>(x) = (x +
+                        n) mod 26. Giải mã được mô tả tượng tự: D<sub>n</sub>(x) = (x − n) mod 26.
+                        <br> <br>
+                        Mật mã Caesar có nhược điểm là rất dễ bị giải mã bằng cách thử từng phương án
+                        dịch chuyển vì trong bảng chữ cái tiếng Anh chỉ có 26 chữ cái.
+                    </p>
+                </div>
+            </section>
+
+            <section id="vigenere" class="section hidden">
+                <div class="sec-con">
+                    <h1 class="sub-title">Vigenere</h1>
+                    <form action="" class="form">
+                        <div class="form-group">
+                            <label for="" class="form-label">Nhập văn bản cần mã hoá / giải mã</label>
+                            <textarea name="" class="form-input-plaintext vigenere-plaintext"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="form-label">Nhập khoá</label>
+                            <textarea name="" class="form-input-key vigenere-key"></textarea>
+                        </div>
+                        <div class="form-submit">
+                            <button class="btn submit-btn encrypt-btn" type="button">Mã hoá</button>
+                            <button class="btn submit-btn decrypt-btn" type="button">Giải mã</button>
+                        </div>
+                        <div class="form-result">
+                            <div class="textarea-wrapper">
+                                <label for="" class="form-label">Kết quả</label>
+                                <button class="copy-btn" type="button">
+                                    <i class="fa-solid fa-copy"></i>
+                                    Sao chép
+                                </button>
+                            </div>
+                            <textarea class="form-output-ciphertext vigenere-output" readonly></textarea>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="sec-desc">
+                    <h2>Mô tả</h2>
+                    <p></p>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+
+</html>
