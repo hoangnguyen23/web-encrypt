@@ -6,11 +6,7 @@ const { Pool } = require("pg");
 
 const app = express();
 
-app.use(cors({
-    origin: ["https://web-encrypt.onrender.com"], // ✅ chỉ cho phép frontend Render
-    methods: ["GET", "POST"],
-    allowedHeaders: ["Content-Type"]
-}));
+app.use(cors());
 
 app.use(bodyParser.json());
 
