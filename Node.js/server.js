@@ -43,8 +43,8 @@ app.post("/save-message", async (req, res) => {
         const result = await pool.query(query, [plaintext, ciphertext, key, algorithm]);
         res.json({ success: true, data: result.rows[0] });
     } catch (err) {
-        console.error("❌ Lỗi PostgreSQL:", err.message);
-        res.status(500).json({ success: false, error: err.message });
+        console.error("❌ Lỗi PostgreSQL:", err);
+        res.status(500).json({ success: false, error: err.message || JSON.stringify(err) });
     }
 });
 
