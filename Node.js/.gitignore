@@ -1,0 +1,12 @@
+# Bỏ node_modules
+node_modules/
+
+# Bỏ file cấu hình môi trường
+.env
+
+# Bỏ log
+*.log
+
+# Bỏ build hoặc dist (nếu có)
+dist/
+build/
