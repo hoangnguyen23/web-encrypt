@@ -45,5 +45,5 @@ app.post("/save-message", async (req, res) => {
 // =========================
 // 🔹 Bắt cổng Render
 // =========================
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => console.log(`🚀 Server đang chạy trên cổng ${PORT}`));
