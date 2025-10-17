@@ -22,14 +22,23 @@
             </div>
             <nav class="side-bar">
                 <ul class="menu-list">
-                    <li class="menu-item active-menu">
+                    <li class="menu-item active-menu" data-target="caesar">
                         <i class="fa-solid fa-arrow-right"></i>
                         <p>Caesar</p>
                     </li>
-                    <li class="menu-item">
+                    <li class="menu-item" data-target="vigenere">
                         <i class="fa-solid fa-arrow-right"></i>
                         <p>Vigenere</p>
                     </li>
+                    <li class="menu-item" data-target="railfence">
+                        <i class="fa-solid fa-arrow-right"></i>
+                        <p>Rail Fence</p>
+                    </li>
+                    <li class="menu-item" data-target="playfair">
+                        <i class="fa-solid fa-arrow-right"></i>
+                        <p>Playfair</p>
+                    </li>
+
                 </ul>
             </nav>
         </header>
@@ -45,11 +54,11 @@
                     <form action="" class="form">
                         <div class="form-group">
                             <label for="" class="form-label">Nhập văn bản cần mã hoá / giải mã</label>
-                            <textarea name="" class="form-input-plaintext caesar-plaintext"></textarea>
+                            <textarea name="" class="form-input-plaintext"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="" class="form-label">Nhập khoá</label>
-                            <textarea name="" class="form-input-key caesar-key"></textarea>
+                            <textarea name="" class="form-input-key"></textarea>
                         </div>
                         <div class="form-submit">
                             <button class="btn submit-btn encrypt-btn" type="button">Mã hoá</button>
@@ -63,7 +72,7 @@
                                     Sao chép
                                 </button>
                             </div>
-                            <textarea class="form-output-ciphertext caesar-output" readonly></textarea>
+                            <textarea class="form-output-ciphertext" readonly></textarea>
                         </div>
                     </form>
                 </div>
@@ -110,11 +119,11 @@
                     <form action="" class="form">
                         <div class="form-group">
                             <label for="" class="form-label">Nhập văn bản cần mã hoá / giải mã</label>
-                            <textarea name="" class="form-input-plaintext vigenere-plaintext"></textarea>
+                            <textarea name="" class="form-input-plaintext"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="" class="form-label">Nhập khoá</label>
-                            <textarea name="" class="form-input-key vigenere-key"></textarea>
+                            <textarea name="" class="form-input-key"></textarea>
                         </div>
                         <div class="form-submit">
                             <button class="btn submit-btn encrypt-btn" type="button">Mã hoá</button>
@@ -128,7 +137,103 @@
                                     Sao chép
                                 </button>
                             </div>
-                            <textarea class="form-output-ciphertext vigenere-output" readonly></textarea>
+                            <textarea class="form-output-ciphertext" readonly></textarea>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="sec-desc">
+                    <h2>Mô tả</h2>
+                    <p>
+                        Mật mã Vigenère là một phương pháp mã hóa chữ cái thông điệp ban đầu bằng cách
+                        sử dụng một chuỗi khóa (keyword) để thực hiện các phép dịch chuyển trên các ký tự
+                        trong thông điệp. Phương pháp này được phát triển bởi Blaise de Vigenère vào thế kỷ
+                        16 và được coi là một cải tiến đáng kể so với mật mã Caesar.
+                        Cách thức hoạt động của mật mã Vigenère khá phức tạp hơn so với mật mã Caesar.
+                        Thay vì sử dụng một dịch chuyển cố định cho tất cả các ký tự trong thông điệp, mật
+                        mã Vigenère sử dụng một chuỗi khóa (keyword) để xác định các số lượng dịch chuyển
+                        khác nhau cho từng ký tự trong thông điệp.
+                        <br> <br>
+                        Quy trình mã hoá thông điệp bằng mật mã Vigenère bắt đầu với việc lặp lại chuỗi
+                        khóa đến khi có độ dài bằng hoặc lớn hơn độ dài của thông điệp. Sau đó, mỗi ký tự
+                        trong chuỗi khóa được ánh xạ tương ứng với một số trong bảng chữ cái (thông thường
+                        từ A đến Z) và sẽ được sử dụng để dịch chuyển ký tự tương ứng trong thông điệp ban
+                        đầu. Ví dụ: Giả sử chúng ta có một thông điệp là "HELLO" và chuỗi khóa là "KEY". Ta
+                        thực hiện mã hoá như sau: <br>
+                        + Thông điệp: H E L L O <br>
+                        + Chuỗi khóa: K E Y K E <br>
+                        + Ký tự mã hoá: V I Q P U
+                        <br> <br>
+                        Do đó, thông điệp "HELLO" sau khi được mã hoá bằng mật mã Vigenère với chuỗi
+                        khóa "KEY" sẽ trở thành "VIQPU".
+                        <br> <br>
+                        Để giải mã thông điệp được mã hoá bằng mật mã Vigenère, người nhận cần biết
+                        chuỗi khóa ban đầu để thực hiện các phép dịch chuyển ngược lại từ ký tự mã hoá để
+                        khôi phục lại thông điệp ban đầu.
+                    </p>
+                </div>
+            </section>
+
+            <section id="railfence" class="section hidden">
+                <div class="sec-con">
+                    <h1 class="sub-title">Railfence</h1>
+                    <form action="" class="form">
+                        <div class="form-group">
+                            <label for="" class="form-label">Nhập văn bản cần mã hoá / giải mã</label>
+                            <textarea name="" class="form-input-plaintext"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="form-label">Nhập khoá</label>
+                            <textarea name="" class="form-input-key"></textarea>
+                        </div>
+                        <div class="form-submit">
+                            <button class="btn submit-btn encrypt-btn" type="button">Mã hoá</button>
+                            <button class="btn submit-btn decrypt-btn" type="button">Giải mã</button>
+                        </div>
+                        <div class="form-result">
+                            <div class="textarea-wrapper">
+                                <label for="" class="form-label">Kết quả</label>
+                                <button class="copy-btn" type="button">
+                                    <i class="fa-solid fa-copy"></i>
+                                    Sao chép
+                                </button>
+                            </div>
+                            <textarea class="form-output-ciphertext" readonly></textarea>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="sec-desc">
+                    <h2>Mô tả</h2>
+                    <p></p>
+                </div>
+            </section>
+
+            <section id="playfair" class="section hidden">
+                <div class="sec-con">
+                    <h1 class="sub-title">Play fair</h1>
+                    <form action="" class="form">
+                        <div class="form-group">
+                            <label for="" class="form-label">Nhập văn bản cần mã hoá / giải mã</label>
+                            <textarea name="" class="form-input-plaintext"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="form-label">Nhập khoá</label>
+                            <textarea name="" class="form-input-key"></textarea>
+                        </div>
+                        <div class="form-submit">
+                            <button class="btn submit-btn encrypt-btn" type="button">Mã hoá</button>
+                            <button class="btn submit-btn decrypt-btn" type="button">Giải mã</button>
+                        </div>
+                        <div class="form-result">
+                            <div class="textarea-wrapper">
+                                <label for="" class="form-label">Kết quả</label>
+                                <button class="copy-btn" type="button">
+                                    <i class="fa-solid fa-copy"></i>
+                                    Sao chép
+                                </button>
+                            </div>
+                            <textarea class="form-output-ciphertext" readonly></textarea>
                         </div>
                     </form>
                 </div>

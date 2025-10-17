@@ -1,4 +1,3 @@
-
 document.querySelectorAll('.menu-item').forEach(item => {
     item.addEventListener('click', () => {
         // Ẩn tất cả sections
@@ -7,9 +6,9 @@ document.querySelectorAll('.menu-item').forEach(item => {
             sec.classList.remove('active');
         });
 
-        // Xác định section cần hiển thị
-        const sectionId = item.textContent.trim().toLowerCase();
-        const target = document.getElementById(sectionId);
+        // Lấy id section từ data-target
+        const targetId = item.dataset.target;
+        const target = document.getElementById(targetId);
         if (target) {
             target.classList.remove('hidden');
             target.classList.add('active');
@@ -64,9 +63,6 @@ function handleResize() {
         header.style.transform = ''; // reset để CSS media query tự xử lý
     }
 }
-
-
-
 
 // Sao chép kết quả
 document.querySelectorAll('.copy-btn').forEach(btn => {
@@ -172,6 +168,173 @@ function vigenereDecrypt(text, key) {
 
     return result;
 }
+// Mã hóa - bỏ khoảng trắng, chuẩn hóa chữ hoa
+function railEncrypt(plaintext, key) {
+    if (!plaintext || key <= 1) return plaintext;
+
+    // --- tiền xử lý ---
+    const cleanText = plaintext.replace(/\s+/g, '').toUpperCase(); // bỏ khoảng trắng, chữ hoa
+
+    const rails = Array.from({ length: key }, () => []);
+    let row = 0, down = true;
+
+    for (const ch of cleanText) {
+        rails[row].push(ch);
+        if (row === 0) down = true;
+        else if (row === key - 1) down = false;
+        row += down ? 1 : -1;
+    }
+
+    return rails.map(r => r.join('')).join('');
+}
+
+// Giải mã
+function railDecrypt(ciphertext, key) {
+    if (!ciphertext || key <= 1) return ciphertext;
+
+    const n = ciphertext.length;
+    const mark = Array.from({ length: key }, () => Array(n).fill(false));
+    let row = 0, down = true;
+
+    for (let col = 0; col < n; col++) {
+        mark[row][col] = true;
+        if (row === 0) down = true;
+        else if (row === key - 1) down = false;
+        row += down ? 1 : -1;
+    }
+
+    const grid = Array.from({ length: key }, () => Array(n).fill(null));
+    let idx = 0;
+    for (let r = 0; r < key; r++) {
+        for (let c = 0; c < n; c++) {
+            if (mark[r][c]) grid[r][c] = ciphertext[idx++];
+        }
+    }
+
+    let plaintext = '';
+    row = 0; down = true;
+    for (let col = 0; col < n; col++) {
+        plaintext += grid[row][col];
+        if (row === 0) down = true;
+        else if (row === key - 1) down = false;
+        row += down ? 1 : -1;
+    }
+
+    return plaintext;
+}
+function generatePlayfairMatrix(key) {
+    key = key.toUpperCase().replace(/[^A-Z]/g, '').replace(/J/g, 'I');
+    const seen = new Set();
+    let matrix = [];
+
+    // B1: thêm các chữ cái trong key
+    for (let ch of key) {
+        if (!seen.has(ch)) {
+            matrix.push(ch);
+            seen.add(ch);
+        }
+    }
+
+    // B2: thêm các chữ còn lại
+    for (let i = 0; i < 26; i++) {
+        const ch = String.fromCharCode(65 + i);
+        if (ch === 'J') continue; // bỏ J
+        if (!seen.has(ch)) {
+            matrix.push(ch);
+            seen.add(ch);
+        }
+    }
+
+    // B3: thành bảng 5x5
+    const table = [];
+    for (let i = 0; i < 25; i += 5) {
+        table.push(matrix.slice(i, i + 5));
+    }
+    return table;
+}
+
+// === Helper: lấy vị trí chữ cái trong bảng ===
+function findPosition(ch, table) {
+    if (ch === 'J') ch = 'I';
+    for (let row = 0; row < 5; row++) {
+        for (let col = 0; col < 5; col++) {
+            if (table[row][col] === ch) return [row, col];
+        }
+    }
+    return null;
+}
+
+// === Chia chuỗi thành cặp ===
+function prepareText(text) {
+    text = text.toUpperCase().replace(/[^A-Z]/g, '').replace(/J/g, 'I');
+    let result = '';
+    for (let i = 0; i < text.length; i++) {
+        result += text[i];
+        if (i + 1 < text.length && text[i] === text[i + 1]) {
+            result += 'X'; // chèn X giữa cặp giống nhau
+        }
+    }
+    if (result.length % 2 === 1) result += 'X'; // thêm X nếu lẻ
+    return result;
+}
+
+function playEncrypt(plaintext, key) {
+    const table = generatePlayfairMatrix(key);
+    const text = prepareText(plaintext);
+    let ciphertext = '';
+
+    for (let i = 0; i < text.length; i += 2) {
+        const a = text[i];
+        const b = text[i + 1];
+        const [r1, c1] = findPosition(a, table);
+        const [r2, c2] = findPosition(b, table);
+
+        if (r1 === r2) {
+            // cùng hàng
+            ciphertext += table[r1][(c1 + 1) % 5];
+            ciphertext += table[r2][(c2 + 1) % 5];
+        } else if (c1 === c2) {
+            // cùng cột
+            ciphertext += table[(r1 + 1) % 5][c1];
+            ciphertext += table[(r2 + 1) % 5][c2];
+        } else {
+            // tạo hình chữ nhật
+            ciphertext += table[r1][c2];
+            ciphertext += table[r2][c1];
+        }
+    }
+
+    return ciphertext;
+}
+
+function playDecrypt(ciphertext, key) {
+    const table = generatePlayfairMatrix(key);
+    ciphertext = ciphertext.toUpperCase().replace(/[^A-Z]/g, '').replace(/J/g, 'I');
+    let plaintext = '';
+
+    for (let i = 0; i < ciphertext.length; i += 2) {
+        const a = ciphertext[i];
+        const b = ciphertext[i + 1];
+        const [r1, c1] = findPosition(a, table);
+        const [r2, c2] = findPosition(b, table);
+
+        if (r1 === r2) {
+            // cùng hàng
+            plaintext += table[r1][(c1 + 4) % 5]; // dịch trái
+            plaintext += table[r2][(c2 + 4) % 5];
+        } else if (c1 === c2) {
+            // cùng cột
+            plaintext += table[(r1 + 4) % 5][c1]; // dịch lên
+            plaintext += table[(r2 + 4) % 5][c2];
+        } else {
+            // tạo hình chữ nhật
+            plaintext += table[r1][c2];
+            plaintext += table[r2][c1];
+        }
+    }
+
+    return plaintext;
+}
 
 function isNumeric(str) {
     str = str.trim();
@@ -208,9 +371,17 @@ function handleCrypto(action) { // action = "encrypt" hoặc "decrypt"
                 : vigenereDecrypt(text, key);
             break;
         case "railfence":
+            if (!isNumeric(key)) {
+                alert('Khoá phải là số');
+            }
             result = action === "encrypt"
                 ? railEncrypt(text, key)
                 : railDecrypt(text, key);
+            break;
+        case "playfair":
+            result = action === "encrypt"
+                ? playEncrypt(text, key)
+                : playDecrypt(text, key);
             break;
         default:
             alert("Thuật toán không được hỗ trợ!");
@@ -219,7 +390,7 @@ function handleCrypto(action) { // action = "encrypt" hoặc "decrypt"
 
     console.log(`${action === "encrypt" ? "Ciphertext" : "Plaintext"}:`, result);
 
-    // Nếu là mã hoá thì gửi lên server
+    // Nếu là mã hoá/giải mã thì gửi lên server
     if (action === "encrypt" || action === "decrypt") {
         fetch("https://web-encrypt-backend.onrender.com/save-message", {
             method: "POST",
