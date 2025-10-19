@@ -10,8 +10,9 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="reponsive.css">
     <title>Encryption tool</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+    <script src="main.js" defer></script>
 </head>
 
 <body>
@@ -37,6 +38,26 @@
                     <li class="menu-item" data-target="playfair">
                         <i class="fa-solid fa-arrow-right"></i>
                         <p>Playfair</p>
+                    </li>
+                    <li class="menu-item" data-target="transposition">
+                        <i class="fa-solid fa-arrow-right"></i>
+                        <p>Transposition</p>
+                    </li>
+                    <li class="menu-item" data-target="autokey">
+                        <i class="fa-solid fa-arrow-right"></i>
+                        <p>Autokey</p>
+                    </li>
+                    <li class="menu-item" data-target="des">
+                        <i class="fa-solid fa-arrow-right"></i>
+                        <p>DES</p>
+                    </li>
+                    <li class="menu-item" data-target="3des">
+                        <i class="fa-solid fa-arrow-right"></i>
+                        <p>Triple DES</p>
+                    </li>
+                    <li class="menu-item" data-target="aes">
+                        <i class="fa-solid fa-arrow-right"></i>
+                        <p>AES</p>
                     </li>
 
                 </ul>
@@ -202,7 +223,6 @@
                         </div>
                     </form>
                 </div>
-
                 <div class="sec-desc">
                     <h2>Mô tả</h2>
                     <p></p>
@@ -237,15 +257,184 @@
                         </div>
                     </form>
                 </div>
-
                 <div class="sec-desc">
                     <h2>Mô tả</h2>
                     <p></p>
                 </div>
             </section>
+
+            <section id="transposition" class="section hidden">
+                <div class="sec-con">
+                    <h1 class="sub-title">Transposition</h1>
+                    <form action="" class="form">
+                        <div class="form-group">
+                            <label for="" class="form-label">Nhập văn bản cần mã hoá / giải mã</label>
+                            <textarea name="" class="form-input-plaintext"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="form-label">Nhập khoá</label>
+                            <textarea name="" class="form-input-key"></textarea>
+                        </div>
+                        <div class="form-submit">
+                            <button class="btn submit-btn encrypt-btn" type="button">Mã hoá</button>
+                            <button class="btn submit-btn decrypt-btn" type="button">Giải mã</button>
+                        </div>
+                        <div class="form-result">
+                            <div class="textarea-wrapper">
+                                <label for="" class="form-label">Kết quả</label>
+                                <button class="copy-btn" type="button">
+                                    <i class="fa-solid fa-copy"></i>
+                                    Sao chép
+                                </button>
+                            </div>
+                            <textarea class="form-output-ciphertext" readonly></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="sec-desc">
+                    <h2>Mô tả</h2>
+                    <p></p>
+                </div>
+            </section>
+
+            <section id="autokey" class="section hidden">
+                <div class="sec-con">
+                    <h1 class="sub-title">Autokey</h1>
+                    <form action="" class="form">
+                        <div class="form-group">
+                            <label for="" class="form-label">Nhập văn bản cần mã hoá / giải mã</label>
+                            <textarea name="" class="form-input-plaintext"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="form-label">Nhập khoá</label>
+                            <textarea name="" class="form-input-key"></textarea>
+                        </div>
+                        <div class="form-submit">
+                            <button class="btn submit-btn encrypt-btn" type="button">Mã hoá</button>
+                            <button class="btn submit-btn decrypt-btn" type="button">Giải mã</button>
+                        </div>
+                        <div class="form-result">
+                            <div class="textarea-wrapper">
+                                <label for="" class="form-label">Kết quả</label>
+                                <button class="copy-btn" type="button">
+                                    <i class="fa-solid fa-copy"></i>
+                                    Sao chép
+                                </button>
+                            </div>
+                            <textarea class="form-output-ciphertext" readonly></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="sec-desc">
+                    <h2>Mô tả</h2>
+                    <p></p>
+                </div>
+            </section>
+
+            <section id="des" class="section hidden">
+                <div class="sec-con">
+                    <h1 class="sub-title">DES</h1>
+                    <form action="" class="form">
+                        <div class="form-group">
+                            <label for="" class="form-label">Nhập văn bản cần mã hoá / giải mã</label>
+                            <textarea name="" class="form-input-plaintext"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="form-label">Nhập khoá</label>
+                            <textarea name="" class="form-input-key"></textarea>
+                        </div>
+                        <div class="form-submit">
+                            <button class="btn submit-btn encrypt-btn" type="button">Mã hoá</button>
+                            <button class="btn submit-btn decrypt-btn" type="button">Giải mã</button>
+                        </div>
+                        <div class="form-result">
+                            <div class="textarea-wrapper">
+                                <label for="" class="form-label">Kết quả</label>
+                                <button class="copy-btn" type="button">
+                                    <i class="fa-solid fa-copy"></i>
+                                    Sao chép
+                                </button>
+                            </div>
+                            <textarea class="form-output-ciphertext" readonly></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="sec-desc">
+                    <h2>Mô tả</h2>
+                    <p></p>
+                </div>
+            </section>
+
+            <section id="3des" class="section hidden">
+                <div class="sec-con">
+                    <h1 class="sub-title">Triple DES</h1>
+                    <form action="" class="form">
+                        <div class="form-group">
+                            <label for="" class="form-label">Nhập văn bản cần mã hoá / giải mã</label>
+                            <textarea name="" class="form-input-plaintext"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="form-label">Nhập khoá</label>
+                            <textarea name="" class="form-input-key"></textarea>
+                        </div>
+                        <div class="form-submit">
+                            <button class="btn submit-btn encrypt-btn" type="button">Mã hoá</button>
+                            <button class="btn submit-btn decrypt-btn" type="button">Giải mã</button>
+                        </div>
+                        <div class="form-result">
+                            <div class="textarea-wrapper">
+                                <label for="" class="form-label">Kết quả</label>
+                                <button class="copy-btn" type="button">
+                                    <i class="fa-solid fa-copy"></i>
+                                    Sao chép
+                                </button>
+                            </div>
+                            <textarea class="form-output-ciphertext" readonly></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="sec-desc">
+                    <h2>Mô tả</h2>
+                    <p></p>
+                </div>
+            </section>
+
+            <section id="aes" class="section hidden">
+                <div class="sec-con">
+                    <h1 class="sub-title">AES</h1>
+                    <form action="" class="form">
+                        <div class="form-group">
+                            <label for="" class="form-label">Nhập văn bản cần mã hoá / giải mã</label>
+                            <textarea name="" class="form-input-plaintext"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="form-label">Nhập khoá</label>
+                            <textarea name="" class="form-input-key"></textarea>
+                        </div>
+                        <div class="form-submit">
+                            <button class="btn submit-btn encrypt-btn" type="button">Mã hoá</button>
+                            <button class="btn submit-btn decrypt-btn" type="button">Giải mã</button>
+                        </div>
+                        <div class="form-result">
+                            <div class="textarea-wrapper">
+                                <label for="" class="form-label">Kết quả</label>
+                                <button class="copy-btn" type="button">
+                                    <i class="fa-solid fa-copy"></i>
+                                    Sao chép
+                                </button>
+                            </div>
+                            <textarea class="form-output-ciphertext" readonly></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="sec-desc">
+                    <h2>Mô tả</h2>
+                    <p></p>
+                </div>
+            </section>
+
         </div>
     </div>
-    <script src="main.js"></script>
 </body>
 
 </html>

@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 // 🔹 Cấu hình PostgreSQL
 // =========================
 const pool = new Pool({
-    connectionString: process.env.DATABASE_URL, // ✅ Render tự cấp biến này
+    connectionString: process.env.DATABASE_URL,
     ssl: process.env.NODE_ENV === "production" ? { rejectUnauthorized: false } : false
 });
 

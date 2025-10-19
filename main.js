@@ -335,6 +335,139 @@ function playDecrypt(ciphertext, key) {
 
     return plaintext;
 }
+// Transposition
+function transEncrypt(plaintext, key) {
+    const keyLength = key.length;
+    const numRows = Math.ceil(plaintext.length / keyLength);
+    const sortedKey = [...key].map((ch, i) => ({ ch, i }))
+        .sort((a, b) => a.ch.localeCompare(b.ch));
+
+    // tạo ma trận theo hàng
+    const matrix = [];
+    for (let i = 0; i < numRows; i++) {
+        const start = i * keyLength;
+        matrix.push(plaintext.slice(start, start + keyLength).padEnd(keyLength, 'X'));
+    }
+
+    // đọc theo cột theo thứ tự key
+    let ciphertext = '';
+    for (let { i } of sortedKey) {
+        for (let row of matrix) ciphertext += row[i];
+    }
+    return ciphertext;
+}
+
+function transDecrypt(ciphertext, key) {
+    const keyLength = key.length;
+    const numRows = Math.ceil(ciphertext.length / keyLength);
+    const sortedKey = [...key].map((ch, i) => ({ ch, i }))
+        .sort((a, b) => a.ch.localeCompare(b.ch));
+
+    const cols = Array(keyLength).fill('');
+    let index = 0;
+
+    // chia cipher theo cột
+    for (let { i } of sortedKey) {
+        cols[i] = ciphertext.slice(index, index + numRows);
+        index += numRows;
+    }
+
+    // đọc theo hàng
+    let plaintext = '';
+    for (let r = 0; r < numRows; r++) {
+        for (let c = 0; c < keyLength; c++) {
+            plaintext += cols[c][r] || '';
+        }
+    }
+
+    return plaintext.replace(/X+$/g, '');
+}
+
+function autoEncrypt(plaintext, key) {
+    plaintext = plaintext.toUpperCase().replace(/[^A-Z]/g, '');
+    key = key.toUpperCase().replace(/[^A-Z]/g, '');
+    let fullKey = (key + plaintext).slice(0, plaintext.length);
+    let ciphertext = '';
+
+    for (let i = 0; i < plaintext.length; i++) {
+        const p = plaintext.charCodeAt(i) - 65;
+        const k = fullKey.charCodeAt(i) - 65;
+        const c = (p + k) % 26;
+        ciphertext += String.fromCharCode(c + 65);
+    }
+    return ciphertext;
+}
+
+function autoDecrypt(ciphertext, key) {
+    ciphertext = ciphertext.toUpperCase().replace(/[^A-Z]/g, '');
+    key = key.toUpperCase().replace(/[^A-Z]/g, '');
+    let plaintext = '';
+
+    for (let i = 0; i < ciphertext.length; i++) {
+        const c = ciphertext.charCodeAt(i) - 65;
+        const k = (i < key.length)
+            ? key.charCodeAt(i) - 65
+            : plaintext.charCodeAt(i - key.length) - 65;
+        const p = (c - k + 26) % 26;
+        plaintext += String.fromCharCode(p + 65);
+    }
+    return plaintext;
+}
+
+// ======================= DES =======================
+
+function desEncrypt(plaintext, key) {
+    const encrypted = CryptoJS.DES.encrypt(plaintext, CryptoJS.enc.Utf8.parse(key), {
+        mode: CryptoJS.mode.ECB,
+        padding: CryptoJS.pad.Pkcs7
+    });
+    return encrypted.toString();
+}
+
+function desDecrypt(ciphertext, key) {
+    const decrypted = CryptoJS.DES.decrypt(ciphertext, CryptoJS.enc.Utf8.parse(key), {
+        mode: CryptoJS.mode.ECB,
+        padding: CryptoJS.pad.Pkcs7
+    });
+    return decrypted.toString(CryptoJS.enc.Utf8);
+}
+
+// ======================= 3DES =======================
+
+function tripleDesEncrypt(plaintext, key) {
+    const encrypted = CryptoJS.TripleDES.encrypt(plaintext, CryptoJS.enc.Utf8.parse(key), {
+        mode: CryptoJS.mode.ECB,
+        padding: CryptoJS.pad.Pkcs7
+    });
+    return encrypted.toString();
+}
+
+function tripleDesDecrypt(ciphertext, key) {
+    const decrypted = CryptoJS.TripleDES.decrypt(ciphertext, CryptoJS.enc.Utf8.parse(key), {
+        mode: CryptoJS.mode.ECB,
+        padding: CryptoJS.pad.Pkcs7
+    });
+    return decrypted.toString(CryptoJS.enc.Utf8);
+}
+
+// ======================= AES =======================
+
+function aesEncrypt(plaintext, key) {
+    const encrypted = CryptoJS.AES.encrypt(plaintext, CryptoJS.enc.Utf8.parse(key), {
+        mode: CryptoJS.mode.ECB,
+        padding: CryptoJS.pad.Pkcs7
+    });
+    return encrypted.toString();
+}
+
+function aesDecrypt(ciphertext, key) {
+    const decrypted = CryptoJS.AES.decrypt(ciphertext, CryptoJS.enc.Utf8.parse(key), {
+        mode: CryptoJS.mode.ECB,
+        padding: CryptoJS.pad.Pkcs7
+    });
+    return decrypted.toString(CryptoJS.enc.Utf8);
+}
+
 
 function isNumeric(str) {
     str = str.trim();
@@ -360,6 +493,7 @@ function handleCrypto(action) { // action = "encrypt" hoặc "decrypt"
         case "caesar":
             if (!isNumeric(key)) {
                 alert('Khoá phải là số');
+                return;
             }
             result = action === "encrypt"
                 ? caesarEncrypt(text, parseInt(key, 10))
@@ -373,6 +507,7 @@ function handleCrypto(action) { // action = "encrypt" hoặc "decrypt"
         case "railfence":
             if (!isNumeric(key)) {
                 alert('Khoá phải là số');
+                return;
             }
             result = action === "encrypt"
                 ? railEncrypt(text, key)
@@ -383,8 +518,33 @@ function handleCrypto(action) { // action = "encrypt" hoặc "decrypt"
                 ? playEncrypt(text, key)
                 : playDecrypt(text, key);
             break;
+        case "transposition":
+            result = action === "encrypt"
+                ? transEncrypt(text, key)
+                : transDecrypt(text, key);
+            break;
+        case "autokey":
+            result = action === "encrypt"
+                ? autoEncrypt(text, key)
+                : autoDecrypt(text, key);
+            break;
+        case "des":
+            result = action === "encrypt"
+                ? desEncrypt(text, key)
+                : desDecrypt(text, key);
+            break;
+        case "3des":
+            result = action === "encrypt"
+                ? tripleDesEncrypt(text, key)
+                : tripleDesDecrypt(text, key);
+            break;
+
+        case "aes":
+            result = action === "encrypt"
+                ? aesEncrypt(text, key)
+                : aesDecrypt(text, key);
+            break;
         default:
-            alert("Thuật toán không được hỗ trợ!");
             return;
     }
 
