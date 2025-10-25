@@ -28,14 +28,14 @@ app.get("/", (req, res) => {
 // 🔹 API lưu message
 // =========================
 app.post("/save-message", async (req, res) => {
-    const { plaintext, ciphertext, key, algorithm } = req.body;
+    const { ciphertext, algorithm } = req.body;
     try {
         const query = `
       INSERT INTO encryption_logs (ciphertext, algorithm)
       VALUES ($1, $2)
       RETURNING *;
     `;
-        const result = await pool.query(query, [plaintext, ciphertext, key, algorithm]);
+        const result = await pool.query(query, [ciphertext, algorithm]);
         res.json({ success: true, data: result.rows[0] });
     } catch (err) {
         console.error("❌ Lỗi PostgreSQL:", err);
