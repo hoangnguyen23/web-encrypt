@@ -476,6 +476,20 @@ function isNumeric(str) {
     let num = parseFloat(str);
     return !isNaN(num) && num.toString() === str;
 }
+function validateKey(algo, keyStr) {
+    const len = CryptoJS.enc.Utf8.parse(keyStr).sigBytes; // số byte thật sự
+    switch (algo) {
+        case "des":
+            return len === 8;
+        case "tripledes":
+            return len === 16 || len === 24;
+        case "aes":
+            return len === 16 || len === 24 || len === 32;
+        default:
+            return false;
+    }
+}
+
 function handleCrypto(action) { // action = "encrypt" hoặc "decrypt"
     const activeSection = document.querySelector("section.section.active");
     const algorithm = activeSection.id;
@@ -529,17 +543,29 @@ function handleCrypto(action) { // action = "encrypt" hoặc "decrypt"
                 : autoDecrypt(text, key);
             break;
         case "des":
+            if (!validateKey(algorithm, key)) {
+                alert('Khoá không hợp lệ!');
+                return;
+            }
             result = action === "encrypt"
                 ? desEncrypt(text, key)
                 : desDecrypt(text, key);
             break;
         case "3des":
+            if (!validateKey(algorithm, key)) {
+                alert('Khoá không hợp lệ!');
+                return;
+            }
             result = action === "encrypt"
                 ? tripleDesEncrypt(text, key)
                 : tripleDesDecrypt(text, key);
             break;
 
         case "aes":
+            if (!validateKey(algorithm, key)) {
+                alert('Khoá không hợp lệ!');
+                return;
+            }
             result = action === "encrypt"
                 ? aesEncrypt(text, key)
                 : aesDecrypt(text, key);
@@ -550,7 +576,7 @@ function handleCrypto(action) { // action = "encrypt" hoặc "decrypt"
 
     console.log(`${action === "encrypt" ? "Ciphertext" : "Plaintext"}:`, result);
 
-    // Nếu là mã hoá/giải mã thì gửi lên server
+    // Nếu là mã hoá / giải mã thì gửi lên server
     if (action === "encrypt" || action === "decrypt") {
         fetch("https://web-encrypt-backend.onrender.com/save-message", {
             method: "POST",
@@ -571,14 +597,12 @@ function handleCrypto(action) { // action = "encrypt" hoặc "decrypt"
 
 // --- 2. Gắn event cho cả 2 nút --- //
 document.querySelectorAll(".encrypt-btn").forEach(btn =>
-    btn.addEventListener("click", (e) => {
-        // e.preventDefault(); // Ngăn reload
+    btn.addEventListener("click", () => {
         handleCrypto("encrypt");
     })
 );
 document.querySelectorAll(".decrypt-btn").forEach(btn =>
-    btn.addEventListener("click", (e) => {
-        // e.preventDefault(); // Ngăn reload
+    btn.addEventListener("click", () => {
         handleCrypto("decrypt");
     })
 );
