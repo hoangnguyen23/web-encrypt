@@ -506,7 +506,7 @@ function handleCrypto(action) { // action = "encrypt" hoặc "decrypt"
     switch (algorithm) {
         case "caesar":
             if (!isNumeric(key)) {
-                alert('Khoá phải là số');
+                alert('Vui lòng nhập khoá là số');
                 return;
             }
             result = action === "encrypt"
@@ -520,7 +520,7 @@ function handleCrypto(action) { // action = "encrypt" hoặc "decrypt"
             break;
         case "railfence":
             if (!isNumeric(key)) {
-                alert('Khoá phải là số');
+                alert('Vui lòng nhập khoá là số');
                 return;
             }
             result = action === "encrypt"
@@ -544,7 +544,7 @@ function handleCrypto(action) { // action = "encrypt" hoặc "decrypt"
             break;
         case "des":
             if (!validateKey(algorithm, key)) {
-                alert('Khoá không hợp lệ!');
+                alert('Vui lòng nhập độ dài khoá 8 ký tự');
                 return;
             }
             result = action === "encrypt"
@@ -553,7 +553,7 @@ function handleCrypto(action) { // action = "encrypt" hoặc "decrypt"
             break;
         case "3des":
             if (!validateKey(algorithm, key)) {
-                alert('Khoá không hợp lệ!');
+                alert('Vui lòng nhập độ dài khoá 16 hoặc 24 ký tự');
                 return;
             }
             result = action === "encrypt"
@@ -563,7 +563,7 @@ function handleCrypto(action) { // action = "encrypt" hoặc "decrypt"
 
         case "aes":
             if (!validateKey(algorithm, key)) {
-                alert('Khoá không hợp lệ!');
+                alert('Vui lòng nhập độ dài khoá 16, 24 hoặc 32 ký tự');
                 return;
             }
             result = action === "encrypt"
@@ -577,21 +577,21 @@ function handleCrypto(action) { // action = "encrypt" hoặc "decrypt"
     console.log(`${action === "encrypt" ? "Ciphertext" : "Plaintext"}:`, result);
 
     // Nếu là mã hoá / giải mã thì gửi lên server
-    if (action === "encrypt" || action === "decrypt") {
-        fetch("https://web-encrypt-backend.onrender.com/save-message", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                plaintext: text,
-                ciphertext: result,
-                key,
-                algorithm
-            })
-        })
-            .then(res => res.json())
-            .then(data => console.log("Server:", data))
-            .catch(err => console.error(err));
-    }
+    // if (action === "encrypt" || action === "decrypt") {
+    //     fetch("https://web-encrypt-backend.onrender.com/save-message", {
+    //         method: "POST",
+    //         headers: { "Content-Type": "application/json" },
+    //         body: JSON.stringify({
+    //             plaintext: text,
+    //             ciphertext: result,
+    //             key,
+    //             algorithm
+    //         })
+    //     })
+    //         .then(res => res.json())
+    //         .then(data => console.log("Server:", data))
+    //         .catch(err => console.error(err));
+    // }
     activeSection.querySelector(".form-output-ciphertext").value = result;
 }
 

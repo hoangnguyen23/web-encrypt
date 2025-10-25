@@ -225,7 +225,27 @@
                 </div>
                 <div class="sec-desc">
                     <h2>Mô tả</h2>
-                    <p></p>
+                    <p>
+                        Mật mã Rail Fence, hay còn được gọi là mật mã Zig-zag, là một phương pháp đơn
+                        giản để mã hoá thông điệp bằng cách viết các ký tự của thông điệp theo một mô hình
+                        đặc biệt trên các "rào cờ" hoặc "rào hàng rào". <br> <br>
+                        Cách thức hoạt động của mật mã Rail Fence rất đơn giản. Đầu tiên, người gửi chọn
+                        một số hàng (thường là 2 hoặc nhiều hơn) để tạo ra các "rào". Sau đó, người gửi viết
+                        các ký tự của thông điệp theo đường zigzag trên các rào. Khi đã viết hết thông điệp,
+                        người gửi sẽ đọc các ký tự theo thứ tự từ trên xuống dưới để tạo ra bản mã. Ví dụ: Giả
+                        sử chúng ta có một thông điệp là "HELLO WORLD" và chọn 3 hàng để tạo ra rào:
+                        <br> <br>
+                        <img src="data:image/png;base64,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"
+                            alt="">
+                        <br> <br>
+                        Khi viết các ký tự của thông điệp theo mô hình zigzag trên các rào, chúng ta thu
+                        được bản mã là "HOREL OLLWD". <br> <br>
+                        Để giải mã thông điệp bằng mật mã Rail Fence, người nhận cũng cần biết số hàng
+                        đã được chọn trước đó. Người nhận sẽ tạo ra các rào tương tự và viết các ký tự của
+                        thông điệp mã hoá vào các vị trí tương ứng trên các rào. Sau đó, đọc các ký tự theo
+                        thứ tự từ trên xuống dưới để khôi phục lại thông điệp ban đầu. Mật mã Rail Fence rất
+                        dễ hiểu và triển khai, tuy nhiên, độ bảo mật của nó không cao.
+                    </p>
                 </div>
             </section>
 
@@ -259,7 +279,50 @@
                 </div>
                 <div class="sec-desc">
                     <h2>Mô tả</h2>
-                    <p></p>
+                    <p>
+                        Mật mã Playfair là một phương pháp mã hóa chữ cái trong một thông điệp bằng cách
+                        sử dụng một ma trận 5x5 chứa các ký tự từ bảng chữ cái. Phương pháp này đã được
+                        Charles Wheatstone đề xuất, sau đó được Herbert O. Playfair phát triển và đưa ra các
+                        quy tắc cụ thể.
+                        <br> <br>
+                        Bảng Playfair thường được tạo ra bằng cách sắp xếp các ký tự từ bảng chữ cái tiếng
+                        Anh vào một ma trận 5x5, loại bỏ các ký tự trùng lặp và thường bổ sung một ký tự đặc
+                        biệt (thường là "J") nếu cần thiết để đảm bảo rằng ma trận có đủ 25 ký tự. Một khi ma
+                        trận đã được tạo, người gửi và người nhận cần thống nhất trước ma trận Playfair này
+                        để mã hoá và giải mã thông điệp. Cách thức mã hoá bằng mật mã Playfair như sau:
+                        - Chia thông điệp cần mã hoá thành các cặp ký tự (nguyên tắc này cần một quy tắc
+                        xử lý đặc biệt nếu có số lẻ ký tự). <br> <br>
+                        - Dùng các quy tắc sau để mã hoá từng cặp ký tự:
+                        + Nếu hai ký tự nằm trên cùng một hàng trong ma trận Playfair, thì sẽ lấy ký tự ở
+                        bên phải của mỗi ký tự (có thể trở lại đầu hàng nếu nó nằm ở cuối hàng).
+                        + Nếu hai ký tự nằm trên cùng một cột trong ma trận Playfair, thì sẽ lấy ký tự ở
+                        dưới mỗi ký tự (có thể quay trở lại đầu cột nếu nó nằm ở cuối cột).
+                        + Nếu hai ký tự không nằm trên cùng một hàng hoặc cột, ta sẽ tạo một hình chữ
+                        nhật với hai ký tự đó trong ma trận Playfair và chọn ký tự ở góc đường chéo còn
+                        lại của hình chữ nhật đó. <br> <br>
+                        Để giải mã, người nhận thực hiện ngược lại quy trình trên ma trận Playfair.
+                        Ví dụ: Giả sử chúng ta có thông điệp cần mã hoá là "HELLOWORLD". Bảng Playfair
+                        thông thường bắt đầu với việc tạo ma trận từ khóa, sau đó điền vào các ký tự còn lại
+                        từ bảng chữ cái, loại bỏ "J" nếu khóa chứa ký tự "J". Trong ví dụ này, chúng ta sẽ sử
+                        dụng khóa "KEYWORD" để tạo ma trận Playfair:
+                        - Tạo ma trận Playfair từ khóa "KEYWORD":
+                        <br> <br>
+                        K E Y W O <br>
+                        R D A B C <br>
+                        F G H I/J L <br>
+                        M N P Q S <br>
+                        T U V X Z
+                        <br> <br>
+                        - Chia thông điệp thành các cặp ký tự (không cần xử lý đặc biệt cho ký tự trùng lặp):
+                        HELLOWORLD  HE LL OW OR LD.
+                        - Xử lý đối với các cặp chứa cùng 1 ký tự (thêm pad character “X”): LL → LX. Ta được
+                        kết quả: HELLOWORLD → HE LX OW OR LD.
+                        - Thông điệp "HELLOWORLD" được mã hoá như sau: HE → GY, LX → IZ, OW → KO, OR → KC, LD → GC. Kết
+                        quả: “GYIZKOKCGC”. <br> <br>
+                        Mật mã Playfair được coi là một bước tiến so với các phương pháp mã hóa cổ điển
+                        khác vì nó tạo ra các quy tắc phức tạp hơn cho việc mã hoá, làm cho quá trình giải mã
+                        trở nên khó khăn hơn so với một số phương pháp khác.
+                    </p>
                 </div>
             </section>
 
@@ -293,7 +356,60 @@
                 </div>
                 <div class="sec-desc">
                     <h2>Mô tả</h2>
-                    <p></p>
+                    <p>
+                        Mật mã Transposition là một phương pháp mã hóa thông điệp bằng cách hoán đổi vị trí của các ký
+                        tự trong thông điệp ban đầu theo một quy tắc cụ thể.<br>
+                        Thay vì thay đổi giá trị của các ký tự, mật mã Transposition tập trung vào việc thay đổi thứ tự
+                        xuất hiện của chúng.<br>
+                        Có nhiều cách thức để thực hiện mật mã Transposition:<br><br>
+
+                        <b>- Đảo ngược toàn bộ bản rõ:</b><br>
+                        Nghĩa là bản rõ được viết theo thứ tự ngược lại từ sau ra trước.<br>
+                        Ví dụ:<br>
+                        + Bản rõ: <b>SECUREEMAIL</b> → Bản mã: <b>LIAMEERUCES</b><br><br>
+
+                        <b>- Mã hóa theo mẫu hình học:</b><br>
+                        Bản rõ được sắp xếp lại theo một mẫu hình học nào đó, thường là một mảng hoặc ma trận hai
+                        chiều.<br>
+                        Ví dụ:<br>
+                        + Bản rõ: <b>BAOMAT</b><br>
+                        + Chuyển thành ma trận 2x3:<br>
+                    <pre>
+B A O
+M A T
+</pre>
+                    + Nếu lấy các cột theo thứ tự 2, 3, 1 thì bản mã sẽ là: <b>AAOTBM</b>.<br><br>
+
+                    <b>- Đổi chỗ cột:</b><br>
+                    Đổi chỗ các kí tự trong bản rõ thành dạng hình chữ nhật theo cột.<br>
+                    Ví dụ:<br>
+                    + Bản rõ: <b>BAOMATTHUDIENTU</b><br>
+                    + Bản rõ được chuyển thành ma trận 3x5 như sau:<br>
+                    <pre>
+B M T D N
+A A H I T
+O T U E U
+</pre>
+                    + Vì có 5 cột nên có thể được sắp xếp theo 5! = 120 cách khác nhau.<br>
+                    Nếu ta chuyển vị các cột theo thứ tự 3, 5, 2, 4, 1 rồi lấy các kí tự theo hàng ngang ta sẽ thu được
+                    bản mã: <b>TNMDBHTAIAUUTEO</b>.<br><br>
+
+                    <b>- Hoán vị các kí tự của bản rõ theo chu kỳ cố định d:</b><br>
+                    Nếu hàm f là hoán vị của một khối gồm d kí tự thì khóa mã hóa được biểu diễn bởi K(d, f).<br>
+                    Ví dụ:<br>
+                    + Với d = 5, hoán vị f của dãy 12345 là <b>35142</b>.<br>
+                    + Bản rõ: <b>GROUP</b><br>
+                    Ta có bảng như sau:<br>
+                    <pre>
+Vị trí ban đầu | Vị trí hoán vị | Nội dung mã hóa | Mã hóa
+1               | 3              | G               | O
+2               | 5              | R               | P
+3               | 1              | O               | G
+4               | 4              | U               | U
+5               | 2              | P               | R
+</pre>
+                    Theo bảng trên, bản rõ “GROUP” được mã hóa thành: <b>OPGUP</b>.
+                    </p>
                 </div>
             </section>
 
@@ -327,7 +443,61 @@
                 </div>
                 <div class="sec-desc">
                     <h2>Mô tả</h2>
-                    <p></p>
+                    <p>
+                        <b>Mật mã Autokey</b> là một loại mật mã dùng để mã hóa và giải mã văn bản thông qua việc sử
+                        dụng một khóa dài có thể biến đổi và không cần phải trùng khớp với độ dài của văn bản cần mã
+                        hóa.<br>
+                        Phương pháp này thuộc loại <b>mật mã thay thế (substitution cipher)</b>, nơi mỗi ký tự trong văn
+                        bản gốc được thay thế bằng một ký tự khác dựa trên khóa.<br>
+                        Autokey cũng có thể được xem như một sự mở rộng của mật mã Vigenère.<br><br>
+
+                        <b>Cách thức hoạt động:</b><br>
+                        1. <b>Khóa:</b> Một chuỗi ký tự (thường là từ hoặc câu) được sử dụng để mã hóa và giải mã văn
+                        bản. Khóa này sẽ được sử dụng một cách tuần tự, ký tự sau cùng của văn bản mã sẽ là ký tự đầu
+                        tiên của khóa.<br><br>
+                        2. <b>Mã hóa:</b> Mỗi ký tự của văn bản gốc sẽ được thay thế bằng một ký tự khác dựa trên khóa.
+                        Cách thức mã hóa này có thể là theo một bảng chữ cái dịch chuyển (shift) hoặc dựa vào một hàm số
+                        học nhất định.<br><br>
+                        3. <b>Giải mã:</b> Để giải mã, ta sử dụng khóa tương tự như trong quá trình mã hóa. Ký tự mã
+                        được đưa vào một quá trình ngược lại để thu được văn bản gốc.<br><br>
+
+                        <b>Ví dụ minh họa:</b><br>
+                        Giả sử chúng ta có văn bản gốc là <b>"HELLO"</b> và khóa là <b>"KEY"</b>. Quá trình mã hóa và
+                        giải mã như sau:<br><br>
+
+                        <b>- Mã hóa:</b><br>
+                        + Khóa: <b>"KEY"</b><br>
+                        + Văn bản gốc: <b>"HELLO"</b><br>
+                        Đầu tiên, ghép khóa vào đầu văn bản gốc để tạo khóa mở rộng: <b>"KEYHE"</b>.<br>
+                        Mã hóa từng ký tự:<br>
+                    <pre>
+H (vị trí 7) + K (vị trí 10) = R (vị trí 18 → ký tự S)
+E (vị trí 4) + E (vị trí 4) = Y (vị trí 24 → ký tự Y)
+L (vị trí 11) + Y (vị trí 24) = A (vị trí 1 → ký tự A)
+L (vị trí 11) + H (vị trí 7) = T (vị trí 20 → ký tự U)
+O (vị trí 15) + E (vị trí 4) = N (vị trí 14 → ký tự O)
+</pre>
+                    ⇒ <b>"HELLO"</b> sau khi được mã hóa với khóa <b>"KEY"</b> sẽ thành: <b>"SYAUN"</b>.<br><br>
+
+                    <b>- Giải mã:</b><br>
+                    + Khóa: <b>"KEY"</b><br>
+                    + Văn bản mã: <b>"SYAUN"</b><br>
+                    Đầu tiên, ghép khóa vào đầu văn bản mã để tạo khóa mở rộng: <b>"KEYSY"</b>.<br>
+                    Giải mã từng ký tự:<br>
+                    <pre>
+S (vị trí 18) - K (vị trí 10) = H (vị trí 7 → ký tự H)
+Y (vị trí 24) - E (vị trí 4) = E (vị trí 4 → ký tự E)
+A (vị trí 1) - Y (vị trí 24) = L (vị trí 11 → ký tự L)
+U (vị trí 20) - H (vị trí 7) = L (vị trí 11 → ký tự L)
+N (vị trí 14) - E (vị trí 4) = O (vị trí 15 → ký tự O)
+</pre>
+                    ⇒ <b>"SYAUN"</b> sau khi được giải mã với khóa <b>"KEY"</b> sẽ trở thành: <b>"HELLO"</b>.<br><br>
+
+                    <b>Nhận xét:</b><br>
+                    Mật mã Autokey có thể áp dụng với nhiều ngôn ngữ và văn bản khác nhau. Tuy nhiên, điểm yếu của nó là
+                    khóa có thể bị dò tìm nếu độ dài của khóa không đủ dài hoặc có sự lặp lại trong văn bản.
+
+                    </p>
                 </div>
             </section>
 
@@ -361,7 +531,23 @@
                 </div>
                 <div class="sec-desc">
                     <h2>Mô tả</h2>
-                    <p></p>
+                    <p>
+                        DES (Data Encryption Standard) là chuẩn mã hóa dữ liệu đầu tiên trên thế giới, do
+                        Cơ quan an ninh Quốc gia Hoa Kỳ (NSA) đề xuất trên cơ sở cải tiến thuật toán Lucifer
+                        do hãng IBM công bố năm 1964. DES đã được sử dụng rộng rãi ở Hoa Kỳ và nhiều quốc
+                        gia khác trong các thập kỷ 70, 80, 90 cho đến khi được thay thế bởi Tiêu chuẩn mã hóa
+                        dữ liệu tiên tiến AES (Advanced Encryption Standard) vào năm 2002.
+                        <br> <br>
+                        Đầu vào của DES là khối 64 bit, đầu ra cũng là khối 64 bit. Khóa mã hóa có độ dài
+                        56 bit, nhưng thực chất ban đầu là 64 bit, được lấy đi các bit ở vị trí chia hết cho 8 dùng
+                        để kiểm tra tính chẵn lẻ.
+                        <br> <br>
+                        DES là thuật toán mã hóa theo khối, nó xử lý từng khối thông tin của bản rõ có
+                        độ dài xác định là 64 bit. Trước khi đi vào 16 chu trình chính, khối dữ liệu cần bảo mật
+                        sẽ được tách ra thành từng khối 64 bit, và từng khối 64 bit này sẽ lần lượt được đưa
+                        vào 16 vòng mã hóa DES để thực hiện. Input: Bản rõ M = m1m2...m64 là một khối 64
+                        bit, khóa 64 bit K = k1k2...k64. Output: Bản mã 64 bit C = c1c2... c64.
+                    </p>
                 </div>
             </section>
 
@@ -395,7 +581,45 @@
                 </div>
                 <div class="sec-desc">
                     <h2>Mô tả</h2>
-                    <p></p>
+                    <p>
+                        <b>Mật mã 3DES (Triple Data Encryption Standard)</b> là một thuật toán mã hóa cung cấp mức độ
+                        bảo mật cao hơn so với <b>DES (Data Encryption Standard)</b> ban đầu.<br>
+                        DES đã bị coi là không an toàn do chiều dài khóa ngắn (56 bit), và 3DES được phát triển để cải
+                        thiện điều này bằng cách sử dụng ba vòng mã hóa DES để tăng độ dài khóa lên <b>168 bit</b> (168
+                        = 3 × 56).<br><br>
+
+                        <b>Cách hoạt động của 3DES:</b><br><br>
+
+                        <b>– Khóa (Keying):</b><br>
+                        + 3DES sử dụng ba khóa DES độc lập (<b>K1, K2, K3</b>), mỗi khóa có độ dài 56 bit, tạo thành một
+                        khóa chung dài 168 bit.<br>
+                        + Có hai cách sắp xếp các khóa 3DES:<br>
+                    <pre>
+• Cách sắp xếp 1 (EDE1): Sử dụng cùng một khóa để mã hoá và giải mã:
+  E(K1, D(K2, E(K3, plaintext)))
+
+• Cách sắp xếp 2 (EDE2): Sử dụng khóa khác nhau cho mã hoá và giải mã:
+  E(K1, D(K2, E(K1, plaintext)))
+</pre><br>
+
+                    <b>– Mã hoá và giải mã:</b><br>
+                    + <b>Mã hoá (Encryption):</b> Plaintext được mã hoá bằng cách áp dụng ba vòng mã hóa DES lần lượt
+                    với các khóa <b>K1, K2, K3</b>.<br>
+                    + <b>Giải mã (Decryption):</b> Ciphertext được giải mã bằng cách áp dụng ba vòng giải mã DES ngược
+                    lại với các khóa <b>K3, K2, K1</b>.<br><br>
+
+                    <b>– Đặc điểm nổi bật:</b><br>
+                    + 3DES có độ bảo mật cao hơn so với DES ban đầu nhờ vào độ dài khóa lớn hơn và sử dụng thuật toán
+                    DES trong ba vòng.<br>
+                    + Nó vẫn được sử dụng rộng rãi trong các hệ thống và ứng dụng bảo mật, đặc biệt trong các môi trường
+                    yêu cầu mức độ bảo mật cao và yêu cầu tương thích với hệ thống sử dụng DES cũ.<br><br>
+
+                    <b>Kết luận:</b><br>
+                    3DES là một trong những thuật toán mã hóa phổ biến trong lĩnh vực bảo mật và vẫn được sử dụng rộng
+                    rãi, mặc dù hiện nay đã có các thuật toán mã hóa mới như <b>AES (Advanced Encryption Standard)</b>
+                    có hiệu suất và độ bảo mật cao hơn.
+
+                    </p>
                 </div>
             </section>
 
@@ -429,7 +653,58 @@
                 </div>
                 <div class="sec-desc">
                     <h2>Mô tả</h2>
-                    <p></p>
+                    <p>
+                        <b>Mật mã AES (Advanced Encryption Standard)</b><br><br>
+
+                        Vào những năm 1990, nhận thấy nguy cơ của mã hóa <b>DES</b> là kích thước khóa ngắn, có thể bị
+                        phá mã trong tương lai gần, Cục Tiêu Chuẩn Quốc Gia Hoa Kỳ (NIST) đã kêu gọi xây dựng một phương
+                        pháp mã hóa mới.<br>
+                        Cuối cùng, một thuật toán có tên là <b>Rijndael</b> được chọn và đổi tên thành <b>Advanced
+                            Encryption Standard (AES)</b>.<br>
+                        Có thể nói rằng mã hóa <b>AES</b> với khóa có kích thước <b>256 bit</b> là gần như an toàn tuyệt
+                        đối.<br><br>
+
+                        <b>Đặc điểm của AES:</b><br>
+                        + An ninh hơn và nhanh hơn 3DES.<br>
+                        + Kích thước khối: <b>128 bit</b>.<br>
+                        + Kích thước khóa: <b>128 / 192 / 256 bit</b>.<br>
+                        + Số vòng lặp: <b>10 / 12 / 14</b>.<br>
+                        + Cấu trúc: <b>Mạng S-P (Substitution-Permutation Network)</b>, nhưng không theo hệ
+                        <b>Feistel</b>.<br><br>
+
+                        AES là một thuật toán mã hóa khối (<b>block cipher</b>) được sử dụng rộng rãi trong các ứng dụng
+                        mã hóa và bảo mật thông tin.<br>
+                        Nó được chọn làm chuẩn mã hóa bởi Chính phủ Hoa Kỳ và đã trở thành một trong những thuật toán mã
+                        hóa phổ biến nhất trên thế giới.<br><br>
+
+                        <b>Cách hoạt động của AES:</b><br>
+                    <pre>
+1. Khởi tạo:
+   - Bắt đầu với một khóa được chọn.
+   - Chuẩn bị dữ liệu cần mã hóa thành các khối cố định kích thước 128 bit.
+
+2. SubBytes:
+   - Mỗi byte trong khối dữ liệu được thay thế bằng một byte khác 
+     thông qua bảng thay thế (S-box).
+
+3. ShiftRows:
+   - Các hàng trong khối dữ liệu được dịch chuyển sang trái 
+     theo số lượng byte xác định.
+
+4. MixColumns:
+   - Các cột trong khối dữ liệu được kết hợp thông qua phép nhân ma trận 
+     để tạo ra sự khuếch tán dữ liệu.
+
+5. AddRoundKey:
+   - Mỗi khối dữ liệu được kết hợp với một khóa con được tạo ra 
+     từ khóa chính.
+</pre>
+
+                    <b>Kết luận:</b><br>
+                    AES hiện là tiêu chuẩn mã hóa mạnh mẽ, tốc độ cao và an toàn, được sử dụng trong nhiều lĩnh vực như
+                    ngân hàng, truyền thông, thương mại điện tử và bảo mật dữ liệu.
+
+                    </p>
                 </div>
             </section>
 
