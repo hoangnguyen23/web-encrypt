@@ -477,11 +477,11 @@ function isNumeric(str) {
     return !isNaN(num) && num.toString() === str;
 }
 function validateKey(algo, keyStr) {
-    const len = CryptoJS.enc.Utf8.parse(keyStr).sigBytes; // số byte thật sự
+    const len = keyStr.length; // số byte
     switch (algo) {
         case "des":
             return len === 8;
-        case "tripledes":
+        case "3des":
             return len === 16 || len === 24;
         case "aes":
             return len === 16 || len === 24 || len === 32;
