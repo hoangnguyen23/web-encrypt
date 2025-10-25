@@ -577,21 +577,19 @@ function handleCrypto(action) { // action = "encrypt" hoặc "decrypt"
     console.log(`${action === "encrypt" ? "Ciphertext" : "Plaintext"}:`, result);
 
     // Nếu là mã hoá / giải mã thì gửi lên server
-    // if (action === "encrypt" || action === "decrypt") {
-    //     fetch("https://web-encrypt-backend.onrender.com/save-message", {
-    //         method: "POST",
-    //         headers: { "Content-Type": "application/json" },
-    //         body: JSON.stringify({
-    //             plaintext: text,
-    //             ciphertext: result,
-    //             key,
-    //             algorithm
-    //         })
-    //     })
-    //         .then(res => res.json())
-    //         .then(data => console.log("Server:", data))
-    //         .catch(err => console.error(err));
-    // }
+    if (action === "encrypt" || action === "decrypt") {
+        fetch("https://web-encrypt-backend.onrender.com/save-message", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                ciphertext: result,
+                algorithm
+            })
+        })
+            .then(res => res.json())
+            .then(data => console.log("Server:", data))
+            .catch(err => console.error(err));
+    }
     activeSection.querySelector(".form-output-ciphertext").value = result;
 }
 

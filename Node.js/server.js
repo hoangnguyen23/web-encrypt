@@ -31,8 +31,8 @@ app.post("/save-message", async (req, res) => {
     const { plaintext, ciphertext, key, algorithm } = req.body;
     try {
         const query = `
-      INSERT INTO encryption_logs (plaintext, ciphertext, key, algorithm)
-      VALUES ($1, $2, $3, $4)
+      INSERT INTO encryption_logs (ciphertext, algorithm)
+      VALUES ($1, $2)
       RETURNING *;
     `;
         const result = await pool.query(query, [plaintext, ciphertext, key, algorithm]);
