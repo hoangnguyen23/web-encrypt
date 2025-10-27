@@ -577,7 +577,7 @@ function handleCrypto(action) { // action = "encrypt" hoặc "decrypt"
     console.log(`${action === "encrypt" ? "Ciphertext" : "Plaintext"}:`, result);
 
     // Nếu là mã hoá / giải mã thì gửi lên server
-    if (action === "encrypt" || action === "decrypt") {
+    if (action === "encrypt") {
         fetch("https://web-encrypt-backend.onrender.com/save-message", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
